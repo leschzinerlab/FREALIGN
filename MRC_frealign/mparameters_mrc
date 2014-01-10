@@ -1,0 +1,32 @@
+Parameter file for mrefine_sge.com
+
+data_input		iid_iia_scp
+raw_images1		invert_OTR_norm_dc4_sel3_00_sel
+thresh_reconst	        25
+thresh_refine		100.0
+pixel_size		6.04
+dstep			60.34
+WGH			0.2
+CS                      2.2
+kV1			120.0
+radius			200
+PBC			4.0
+BOFF			0.0
+DANG			15.0
+ITMAX			50
+MODE		        1
+XSTD		        0	
+RBFACT			0
+FLIP			T
+FMAG			F
+FDEF			F
+FASTIG			F
+IEWALD			0
+res_reconstruction	12.0
+res_low_refinement	200.0
+res_refinement		32
+start_process		4	
+end_process		8
+first_particle		1
+last_particle	        3179
+increment	 	398	

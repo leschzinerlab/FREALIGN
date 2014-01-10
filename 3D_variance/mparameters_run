@@ -1,0 +1,29 @@
+Parameter file for mrefine.com
+
+working_directory   /home/michael/TFIID_IIA_DNA/Cryo/11may10a/FREAL_3Dvar/REF1
+data_input	    iid_iia_scp
+raw_images	    IID_IIA_SCP1_may10_freal
+radius               250
+thresh_reconst       0.90
+thresh_refine        100
+PBC                  4.0
+BOFF                 0.0
+DANG                200.0
+ITMAX                50
+MODE                  0
+FPART                 F
+RBfactor	     0.0
+Sym		     C1
+pix_size	     6.01
+kV		     120.
+mask		     0.0
+Amp_contrast	     0.07
+res_reconstruction   12.0
+res_refinement       25.0
+dstep		     60.34
+nclasses             500
+start_process	     6
+end_process	     6
+first_particle       1
+last_particle	     12921
+increment            20

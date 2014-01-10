@@ -1,0 +1,107 @@
+;	b20_get_sel_angles_sel_shifts_final.spi
+;
+
+;
+;	This batch gets sel_angles and sel_shifts_final and puts them in 1 doc file in
+;	preparation for frealign.
+;
+;;;;;;;;;;;;;
+
+FR
+?Input angular file? [angular]
+
+FR
+?Input shifts file? [shifts]
+
+FR
+?Input CTF-parameter file? [ctf]
+
+RR [mag]
+?Input actual magnification?
+
+;;;;;;;;;;;;;
+ 
+UD N x12
+[shifts]
+
+;x12=12921;#of particles 
+;x13=2		;round of refinement # (directory #)
+x19=360
+x20=180
+x21=-1
+x70=0.0
+; magnification
+x71=[mag]
+
+DO LB1 x11=1,x12
+
+;
+;	Get angular file
+;
+
+UD IC,x11,x14,x15,x16
+[angular] 
+
+;x14=x19-x14	;make psi negative
+;x16=x19-x16	;make phi negative
+
+;
+;	Get shifts
+;
+
+UD IC,x11,x17,x18
+[shifts]
+
+;x17=2*x17	;multiply x shift by 2 to account for decimation factor
+;x18=2*x18	;multiply y shift by 2 to account for decimation factor
+
+if(x14.LT.0.0)x14=x14+360.
+if(x14.LT.0.0)x14=x14+360.
+
+if(x14.GT.360.0)x14=x14-360.
+if(x14.GT.360.0)x14=x14-360.
+
+SD x11,x14,x15,x16,x17,x18
+angles_and_shifts
+
+;
+; get ctf parameters, add mag. and "phase residuals"
+;
+
+UD IC,x11,x21,x22,x23,x24,x25
+[ctf]
+
+sd x71,x21,x22,x23,x24,x70,x70
+ctf_param
+
+
+LB1
+
+SD E
+angles_and_shifts
+
+UD ICE
+[angular] 
+
+UD ICE
+[shifts]
+
+UD ICE
+[ctf] 
+
+sd e
+ctf_param
+
+;
+;	Format the parameters for frealign.
+;
+
+VM
+fre_format_param.sh angles_and_shifts.spi ctf_param.spi parameters_in_01.spi
+
+VM
+rm -f angles_and_shifts.spi ctf_param.spi
+
+EN D
+
+

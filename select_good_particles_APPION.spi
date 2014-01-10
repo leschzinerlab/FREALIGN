@@ -1,0 +1,110 @@
+;This batch will take a select file and extract the good particles from a stack, ctf_parameter file, angular file, & shifts.
+
+;;;;;;;;;;;;;;;
+
+FR
+?Input select file? <select>
+
+FR 
+?Input stack? <stack>
+
+FR
+?Input ctf parameter stack from appion? <ctf>
+
+FR
+?Input angular file? <angular>
+
+FR
+?Input shifts file? <shifts>
+
+FR
+?Output directory? <output>
+
+RR x20
+?Box size?
+
+;;;;;;;;;;;;;;;;;
+
+
+MD 
+SET MP
+(0)
+
+UD N x99
+<select>
+
+MS
+_1@
+x20 x20 1
+x99
+
+SD IC NEW
+new_ctf
+12,x99
+
+SD IC NEW
+new_angular
+3,x99
+
+SD IC NEW
+new_shifts
+3,x99
+
+do lb1 x30=1,x99
+
+	UD IC x30 x41
+	<select>
+
+	CP 
+	<stack>@{*****x41}
+	_1@{*****x30}
+
+	UD IC x41 x51 x52 x53 x54 x55 x56 x57 x58 x59 x81 x82 x83
+	<ctf>
+
+	SD IC x30 x51 x52 x53 x54 x55 x56 x57 x58 x59 x81 x82 x83
+	new_ctf
+
+	UD IC x41 x61 x62 x63
+	<angular>
+
+	SD IC x30 x61 x62 x63
+	new_angular
+
+	UD IC x41 x71 x72 x73
+	<shifts>
+
+	SD IC x30 x71 x72 x73
+	new_shifts
+
+lb1
+
+SD IC COPY
+new_ctf
+<output>/<ctf>_sel
+
+SD IC COPY
+new_angular
+<output>/<angular>_sel
+
+SD IC COPY
+new_shifts
+<output>/<shifts>_sel
+
+UD ICE 
+<select>
+
+UD ICE 
+<ctf>
+
+UD ICE
+<angular>
+
+UD ICE 
+<shifts>
+
+CP 
+_1@
+<output>/selected_<stack>@
+
+en d

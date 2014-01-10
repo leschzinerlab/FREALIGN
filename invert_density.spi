@@ -1,0 +1,35 @@
+;;;;;;;;
+
+FR
+?Input stack? <stack>
+
+RR [boxSize]
+?Box size?
+
+RR [numParts]
+?Number of particles?
+
+;;;;;;;;
+
+MD 
+SET MP
+(0)
+
+MS
+_1@
+[boxSize] [boxSize] 1
+[numParts]
+
+do lb1 [part]=1,[numParts]
+
+	neg a
+	<stack>@{******[part]}
+	_1@{******[part]}
+
+lb1
+
+CP 
+_1@
+invert_<stack>@
+
+en d

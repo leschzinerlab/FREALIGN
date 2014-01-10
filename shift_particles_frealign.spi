@@ -1,0 +1,36 @@
+;This batch will shift particles using shifts from FREALIGN
+
+;NOTE:  a negative sign (-) was inserted before the x & y shifts b/c when they are applied in the align_3d batch they have a negative sign.   
+
+;;;;;;;;;;;;;;;
+FR
+?UNSHIFTED INPUT? <stack>
+
+FR
+?SPIDER PARAMETER FILE? <shifts>
+;;;;;;;;;;;;;;;;;;;;
+
+UD N x99
+<shifts>
+
+MD
+SET MP
+4
+
+DO LB1 x50=1,x99
+
+	UD IC x50,x11,x12,
+	<shifts>
+
+	SH F
+	<stack>@{*****x50}
+	<stack>_shifted@{*****x50}
+	-x11,-x12
+
+LB1
+
+UD ICE
+<shifts>
+
+en d
+

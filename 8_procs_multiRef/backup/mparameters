@@ -1,0 +1,37 @@
+Parameter file for refine.com
+
+working_directory    /local/michael/TFIID_IIA_SCP1/Cryo/11may10a/manual/EMAN2_new/ref4_vols_2Mask/tryAgain/FREALIGN_MultiRef/REF1_adaptMultiFromClust
+data_input	     merge
+raw_images1	     merge_frealign_stack
+radius               200
+thresh_reconst       1
+thresh_refine        100
+PBC                  4.0
+BOFF                 0.0
+DANG                 200.0
+ITMAX                50
+MODE                 1
+FPART                F
+FLIP		     T
+FMAG		     F
+FDEF		     F
+FASTIG		     F
+IEWALD		     0
+RBFACT    	     0.0
+Sym		     C1
+pixel_size	     6.04
+CS                   2.2
+kV1		     120.
+mask		     0.0
+XSTD 		     0
+WGH       	     0.07
+res_reconstruction   12.0
+res_refinement       30.0
+res_low_refinement   200.0
+dstep		     60.34
+nclasses             2
+start_process	     2
+end_process	     2
+first_particle       1
+last_particle	     21711
+increment            5428
